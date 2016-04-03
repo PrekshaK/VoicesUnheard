@@ -11,6 +11,7 @@ class Stories: NSObject {
     var myName: String?
     var number: NSNumber?
     var comments: NSArray?
+    var metadata: KCSMetadata!
     
     
     
@@ -30,6 +31,7 @@ class Stories: NSObject {
             "myName" : "myName",
             "number" : "number",
             "comments": "comments",
+            "metadata": KCSEntityKeyMetadata,
         
         ]
     }
@@ -108,9 +110,11 @@ class HomePageController: UIViewController, UINavigationControllerDelegate, UIIm
             print ("hello")
             print("file id is\(uploadInfo.fileId)");
         
-            
+        
         
         let story = Stories()
+            
+            story.metadata = KCSMetadata()
         story.mName = self.nameOutlet.text
         story.mdescription = self.descriptionOutlet.text
         story.mLocation = self.locationOutlet.text
@@ -118,6 +122,9 @@ class HomePageController: UIViewController, UINavigationControllerDelegate, UIIm
         story.myName = KCSUser.activeUser().username;
             story.number = 1;
             story.comments = ["no cmnts"];
+            
+            story.metadata.setGloballyReadable(true);
+            
         
         //print(story.mImage)
         
