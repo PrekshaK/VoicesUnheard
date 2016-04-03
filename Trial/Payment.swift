@@ -55,6 +55,17 @@ class DetailController: UIViewController, UITableViewDataSource, UITableViewDele
         
     }
     
+
+    @IBAction func shareAction(sender: AnyObject) {
+        let activityViewController = UIActivityViewController(
+            activityItems: [mStoryvalue.text as! NSString],
+            applicationActivities: nil)
+        
+        presentViewController(activityViewController, animated: true, completion: nil)
+        
+        
+    }
+    
     
     
 

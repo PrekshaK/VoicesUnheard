@@ -266,164 +266,21 @@ class MainDisplayController:UIViewController,UICollectionViewDataSource, UIColle
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    @IBAction func MediumAction(sender: AnyObject) {
-        let collection = KCSCollection(fromString: "Stories", ofClass: Stories.self)
-        let store = KCSAppdataStore(collection: collection, options: nil)
-        store.queryWithQuery(
-            KCSQuery(onField: "size", withExactMatchForValue: "M"),
-            withCompletionBlock: { (objectsOrNil: [AnyObject]!, errorOrNil: NSError!) -> Void in
-                
-                if errorOrNil == nil {
-                    //NSLog("successful reload: %@", objectsOrNil as! NSObject) // event updated
-                    
-                    self.valueFromQuery = objectsOrNil as! NSObject as! [Stories]
-                    //print(self.valueFromQuery)
-                    
-                    
-                    //print(self.valueFromQuery)
-                    
-                    self.mCollectionView.reloadData()
-                    
-                    
-                } else {
-                    NSLog("error occurred: %@", errorOrNil)
-                }
-                
-            },
-            withProgressBlock: nil
-        )
-        
-        
-    }
-    
-    @IBAction func LargeAction(sender: AnyObject) {
-        
-        let collection = KCSCollection(fromString: "Stories", ofClass: Stories.self)
-        let store = KCSAppdataStore(collection: collection, options: nil)
-        store.queryWithQuery(
-            KCSQuery(onField: "size", withExactMatchForValue: "L"),
-            withCompletionBlock: { (objectsOrNil: [AnyObject]!, errorOrNil: NSError!) -> Void in
-                
-                if errorOrNil == nil {
-                    //NSLog("successful reload: %@", objectsOrNil as! NSObject) // event updated
-                    
-                    self.valueFromQuery = objectsOrNil as! NSObject as! [Stories]
-                    //print(self.valueFromQuery)
-                    
-                    
-                    //print(self.valueFromQuery)
-                    
-                    self.mCollectionView.reloadData()
-                    
-                    
-                } else {
-                    NSLog("error occurred: %@", errorOrNil)
-                }
-                
-            },
-            withProgressBlock: nil
-        )
-    }
-    
-    
-    @IBAction func MenAction(sender: AnyObject) {
-        
-        let collection = KCSCollection(fromString: "Stories", ofClass: Stories.self)
-        let store = KCSAppdataStore(collection: collection, options: nil)
-        store.queryWithQuery(
-            KCSQuery(onField: "category", withExactMatchForValue: "Men"),
-            withCompletionBlock: { (objectsOrNil: [AnyObject]!, errorOrNil: NSError!) -> Void in
-                
-                if errorOrNil == nil {
-                    //NSLog("successful reload: %@", objectsOrNil as! NSObject) // event updated
-                    
-                    self.valueFromQuery = objectsOrNil as! NSObject as! [Stories]
-                    //print(self.valueFromQuery)
-                    
-                    
-                    //print(self.valueFromQuery)
-                    
-                    self.mCollectionView.reloadData()
-                    
-                    
-                } else {
-                    NSLog("error occurred: %@", errorOrNil)
-                }
-                
-            },
-            withProgressBlock: nil
-        )
-    }
-    
-    @IBAction func WomenAction(sender: AnyObject) {
-        
-        let collection = KCSCollection(fromString: "Stories", ofClass: Stories.self)
-        let store = KCSAppdataStore(collection: collection, options: nil)
-        store.queryWithQuery(
-            KCSQuery(onField: "category", withExactMatchForValue: "Women"),
-            withCompletionBlock: { (objectsOrNil: [AnyObject]!, errorOrNil: NSError!) -> Void in
-                
-                if errorOrNil == nil {
-                    //NSLog("successful reload: %@", objectsOrNil as! NSObject) // event updated
-                    
-                    self.valueFromQuery = objectsOrNil as! NSObject as! [Stories]
-                    //print(self.valueFromQuery)
-                    
-                    
-                    //print(self.valueFromQuery)
-                    
-                    self.mCollectionView.reloadData()
-                    
-                    
-                } else {
-                    NSLog("error occurred: %@", errorOrNil)
-                }
-                
-            },
-            withProgressBlock: nil
-        )
-        
-    }
-    
-    @IBAction func AllAction(sender: AnyObject) {
-        let collection = KCSCollection(fromString: "Stories", ofClass: Stories.self)
-        let store = KCSAppdataStore(collection: collection, options: nil)
-        store.queryWithQuery(
-            KCSQuery(onField: "price", usingConditional: KCSQueryConditional.KCSGreaterThan, forValue:0),
-            withCompletionBlock: { (objectsOrNil: [AnyObject]!, errorOrNil: NSError!) -> Void in
-                
-                if errorOrNil == nil {
-                    //NSLog("successful reload: %@", objectsOrNil as! NSObject) // event updated
-                    
-                    self.valueFromQuery = objectsOrNil as! NSObject as! [Stories]
-                    //print(self.valueFromQuery)
-                    
-                    
-                    //print(self.valueFromQuery)
-                    
-                    self.mCollectionView.reloadData()
-                    
-                    
-                } else {
-                    NSLog("error occurred: %@", errorOrNil)
-                }
-            },
-            withProgressBlock: nil
-        )
-    }
 }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
 
