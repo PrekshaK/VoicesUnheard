@@ -190,6 +190,96 @@ class MainDisplayController:UIViewController,UICollectionViewDataSource, UIColle
     
     
     
+    
+    
+    
+    @IBAction func allStories(sender: AnyObject) {
+        
+        let collection = KCSCollection(fromString: "Stories", ofClass: Stories.self)
+        let store = KCSAppdataStore(collection: collection, options: nil)
+        store.queryWithQuery(
+            KCSQuery(onField: "number", usingConditional: KCSQueryConditional.KCSGreaterThan, forValue:0),
+            withCompletionBlock: { (objectsOrNil: [AnyObject]!, errorOrNil: NSError!) -> Void in
+                
+                if errorOrNil == nil {
+                    //NSLog("successful reload: %@", objectsOrNil as! NSObject) // event updated
+                    
+                    self.valueFromQuery = objectsOrNil as! NSObject as! [Stories]
+                    //print(self.valueFromQuery)
+                    
+                    
+                    //print(self.valueFromQuery)
+                    
+                    self.mCollectionView.reloadData()
+                    
+                    
+                } else {
+                    NSLog("error occurred: %@", errorOrNil)
+                }
+                
+            },
+            withProgressBlock: nil
+        )
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    @IBAction func myStories(sender: AnyObject) {
+        
+        
+        
+        
+        
+        let collection = KCSCollection(fromString: "Stories", ofClass: Stories.self)
+        let store = KCSAppdataStore(collection: collection, options: nil)
+        store.queryWithQuery(
+            KCSQuery(onField: "myName", withExactMatchForValue: KCSUser.activeUser().username),
+            withCompletionBlock: { (objectsOrNil: [AnyObject]!, errorOrNil: NSError!) -> Void in
+                
+                if errorOrNil == nil {
+                    //NSLog("successful reload: %@", objectsOrNil as! NSObject) // event updated
+                    
+                    self.valueFromQuery = objectsOrNil as! NSObject as! [Stories]
+                    //print(self.valueFromQuery)
+                    
+                    
+                    //print(self.valueFromQuery)
+                    
+                    self.mCollectionView.reloadData()
+                    
+                    
+                } else {
+                    NSLog("error occurred: %@", errorOrNil)
+                }
+                
+            },
+            withProgressBlock: nil
+        )
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @IBAction func MediumAction(sender: AnyObject) {
         let collection = KCSCollection(fromString: "Stories", ofClass: Stories.self)
         let store = KCSAppdataStore(collection: collection, options: nil)

@@ -10,8 +10,10 @@ class DetailController: UIViewController, UITableViewDataSource, UITableViewDele
 
     @IBOutlet weak var mImageView: UIImageView!
     
-    @IBOutlet weak var hName: UILabel!
-    @IBOutlet weak var mlocation: UILabel!
+    @IBOutlet weak var hName: UITextView!
+  
+
+    @IBOutlet weak var mlocation: UITextView!
 
     @IBOutlet weak var mCharacteristics: UILabel!
     
@@ -22,9 +24,23 @@ class DetailController: UIViewController, UITableViewDataSource, UITableViewDele
     
     @IBOutlet weak var mtableView: UITableView!
     
+    @IBOutlet weak var editingDone: UIButton!
+   
     
     
     override func viewDidLoad() {
+        
+        
+        let name1 = KCSUser.activeUser().username;
+        let name2 = detailItem.myName! as! String;
+        if name1 != name2{
+            mlocation.editable = false;
+            hName.editable = false;
+            editingDone.isAccessibilityElement = false;
+        }
+       
+        
+        
         
 
         
@@ -38,6 +54,7 @@ class DetailController: UIViewController, UITableViewDataSource, UITableViewDele
 //        muploadedBy.text = detailItem.myName;
         
     }
+    
     
     
 
@@ -96,6 +113,51 @@ class DetailController: UIViewController, UITableViewDataSource, UITableViewDele
         
     
     }
+    
+    
+    
+    
+    
+    @IBAction func editaction(sender: AnyObject) {
+        
+        detailItem.mName = hName.text;
+        detailItem.mLocation = mlocation.text;
+        
+        
+        
+        let someImageStore = KCSLinkedAppdataStore.storeWithOptions([
+            
+            KCSStoreKeyCollectionName: "Stories",
+            KCSStoreKeyCollectionTemplateClass : Stories.self
+            ])
+        
+        
+        
+        someImageStore.saveObject(detailItem, withCompletionBlock: {
+            
+            (objectsOrNil:[AnyObject]!, errorOrNil: NSError!) -> Void in
+            print("Image Object Saved")
+            
+            
+            
+            if errorOrNil != nil {
+                //save failed
+                NSLog("Save failed, with error: %@", errorOrNil.localizedFailureReason!)
+            } else {
+                //save was successful
+                NSLog("Successfully saved event (id='%@').", (objectsOrNil[0] as! NSObject).kinveyObjectId())
+            }
+            },
+            withProgressBlock: nil
+        )
+        
+
+        
+    }
+    
+    
+    
+    
     
     
 
